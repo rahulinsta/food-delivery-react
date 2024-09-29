@@ -3,7 +3,7 @@ import './Cart.css'
 import { StoreContext } from '../../context/StoreContext'
 import { assets } from '../../assets/assets';
 function Cart() {
-  const {cartItems, removeCart, food_list } = useContext(StoreContext);
+  const {cartItems, removeCart, food_list, getTotalCartAmount } = useContext(StoreContext);
   return (
     <div className='cart'>
       <div className="cart-items">
@@ -21,7 +21,7 @@ function Cart() {
           food_list.map((item, index) =>{
             if(cartItems[item._id] > 0){
               return (
-                <div>
+                <div key={index}>
                 <div className='cart-itmes-title cart-items-item'>
                   <img src={item.image} />
                   <p>{item.name}</p>
@@ -39,22 +39,22 @@ function Cart() {
 
       </div>
       <div className="cart-bottom">
-        <div className="cart-totals">
+        <div className="cart-total">
           <h2>Cart Totals</h2>
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>{0}</p>
+              <p>${getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>{2}</p>
+              <p>${2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>{0}</b>
+              <b>${getTotalCartAmount()+2}</b>
             </div>  
           </div>
           <button>Proceed To Checkout</button>

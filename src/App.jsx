@@ -25,8 +25,6 @@ function App() {
           
       </Routes>
 
-      <AppDownload/>
-
     </div>
     
     <Footer/>
